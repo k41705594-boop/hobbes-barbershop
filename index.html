@@ -18,7 +18,7 @@
 :root{
   --ink:#0f1012; --ink-2:#18191c; --cream:#ebe5d9; --paper:#f3efe7; --mute:#8a8378;
   --line:rgba(15,16,18,.14); --line-d:rgba(235,229,217,.16);
-  --blue:#1e3a52; --blue-2:#17314a; --brass:#b68d4f;
+  --blue:#1e3a52; --blue-2:#17314a; --brass:#b68d4f; --red:#b3322b; --blue-p:#24508a;
   --serif:'Instrument Serif',Georgia,serif; --sans:'Inter Tight',system-ui,sans-serif;
   --pad:clamp(16px,4vw,56px);
 }
@@ -74,7 +74,19 @@ header.solid .btn{background:var(--ink);color:var(--cream)}
 .hero .side p{font-family:var(--serif);font-size:26px;line-height:1.15}
 .hero .meta{display:grid;grid-template-columns:repeat(3,auto);gap:22px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;border-top:1px solid var(--line-d);padding-top:14px}
 .hero .meta b{display:block;font-weight:500;font-size:14px;letter-spacing:0;text-transform:none}
+.hero .side .btn.light{background:var(--red);color:#fff}.hero .side .btn.light:hover{background:#fff;color:var(--red)}
 .hero .tag{position:absolute;z-index:2;top:110px;left:var(--pad);opacity:.85}
+/* барбер-пол: красный, белый, синий */
+.pole{position:absolute;z-index:2;right:var(--pad);top:104px;height:min(36vh,290px);display:flex;flex-direction:column;align-items:center;filter:drop-shadow(0 10px 30px rgba(0,0,0,.4))}
+.pole .cap{width:50px;height:18px;background:linear-gradient(90deg,#8a6631,#e3c48c 45%,#8a6631);border-radius:8px 8px 3px 3px}
+.pole .cap.b{border-radius:3px 3px 8px 8px}
+.pole .glass{flex:1;width:36px;border-radius:4px;overflow:hidden;position:relative;box-shadow:0 0 50px rgba(179,50,43,.45)}
+.pole .glass:before{content:"";position:absolute;left:0;right:0;top:-80px;bottom:0;background:repeating-linear-gradient(-45deg,var(--red) 0 14px,#f3efe7 14px 28px,var(--blue-p) 28px 42px,#f3efe7 42px 56px);animation:pole 1.8s linear infinite}
+.pole .glass:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.35) 35%,rgba(255,255,255,0) 55%,rgba(0,0,0,.4))}
+@keyframes pole{to{transform:translateY(79.2px)}}
+.stripe{height:14px;overflow:hidden;position:relative;background:#f3efe7}
+.stripe:before{content:"";position:absolute;top:0;bottom:0;left:-57px;right:0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#f3efe7 10px 20px,var(--blue-p) 20px 30px,#f3efe7 30px 40px);animation:str 2.4s linear infinite}
+@keyframes str{to{transform:translateX(56.57px)}}
 
 /* манифест */
 .manifest{padding:clamp(90px,14vw,190px) var(--pad);text-align:center}
@@ -206,7 +218,7 @@ footer .links{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap
 .loader .mid{position:absolute;inset:0;display:grid;place-items:center;color:var(--cream);transition:opacity .4s}
 .loader.done .mid{opacity:0}
 .loader .name{font-family:var(--serif);font-style:italic;font-size:clamp(64px,10vw,140px);line-height:1;position:relative;overflow:hidden;padding:0 .1em}
-.loader .name:after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--brass);transform:scaleX(var(--p,0));transform-origin:left}
+.loader .name:after{content:"";position:absolute;left:0;right:0;top:50%;height:6px;margin-top:-3px;background:repeating-linear-gradient(-45deg,var(--red) 0 6px,#f3efe7 6px 12px,var(--blue-p) 12px 18px,#f3efe7 18px 24px);transform:scaleX(var(--p,0));transform-origin:left}
 .loader .cnt{position:absolute;right:var(--pad);bottom:var(--pad);font-family:var(--serif);font-size:clamp(48px,8vw,120px);line-height:.8}
 .loader .sub{position:absolute;left:var(--pad);bottom:var(--pad)}
 
@@ -228,7 +240,7 @@ footer .links{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap
 .mq .tr{display:flex;width:max-content;will-change:transform}
 .mq span{font-family:var(--serif);font-size:clamp(56px,9vw,150px);line-height:1;white-space:nowrap;padding-right:.4em}
 .mq span:nth-child(even){font-style:italic;color:transparent;-webkit-text-stroke:1px rgba(235,229,217,.55)}
-.mq b{font-weight:400;color:var(--brass);padding-right:.4em;font-size:clamp(40px,6vw,100px)}
+.mq b{font-weight:400;color:var(--red);padding-right:.4em;font-size:clamp(40px,6vw,100px)}
 
 /* ритуал */
 .ritual{background:var(--paper);position:relative}
@@ -284,6 +296,7 @@ footer .links{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap
   .hero .side p{font-size:22px}
   .hero h1{font-size:31vw}
   .hero .tag{top:92px}
+  .pole{top:86px;height:150px}.pole .glass{width:20px}.pole .cap{width:30px;height:12px}
   .facts{grid-template-columns:1fr 1fr}
   .facts div{padding:22px 0;border-right:0;border-bottom:1px solid var(--line)}
   .facts div:nth-child(odd){padding-right:16px;border-right:1px solid var(--line)}
@@ -336,6 +349,7 @@ footer .links{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap
   <!-- ЗАГЛУШКА: после субботней съёмки заменить на <video autoplay muted loop playsinline poster="img/hero.jpg" src="video/hero.mp4"></video> -->
   <div class="media"><img src="img/hero.jpg" alt="Барбер за работой в Hobbes"></div>
   <div class="grain"></div>
+  <div class="pole" aria-hidden="true"><span class="cap"></span><span class="glass"></span><span class="cap b"></span></div>
   <div class="tag cap"><span class="live" id="live"><i></i><span id="liveT">Открыто до 21:00</span></span></div>
   <div class="in">
     <div class="h1clip"><h1><span>Hobbes</span></h1></div>
@@ -347,6 +361,7 @@ footer .links{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap
   </div>
 </section>
 
+<div class="stripe" aria-hidden="true"></div>
 <div class="mq" aria-hidden="true"><div class="tr" id="mqT"></div></div>
 
 <section class="manifest">
